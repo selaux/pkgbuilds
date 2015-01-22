@@ -1,26 +1,23 @@
-# Maintainer: selaux <test@example.com>
+# Maintainer: selaux <github@stefanlau.com>
+
+_reponame=ck2launcher-gtk
+_gitrev=ce59a9f2b9c2e3c6503c168147806244fd0a0d2d
+_sourcefilename="ck2launcher.py"
+_filename="ck2launcher-gtk"
+
 pkgname=ck2launcher-gtk
-pkgver=20130814
+pkgver=20150122
 pkgrel=1
 pkgdesc="GTK-based launcher for Crusader Kings 2, allowing to select Mods & DLC"
 arch=('i686' 'x86_64')
-url="https://gist.github.com/selaux/5840325"
-license=('WTFPL')
-makedepends=('wget')
+url='https://github.com/selaux/ck2launcher-gtk'
+license=('GPLv3')
+makedepends=('tar')
 depends=('python-gobject' 'python-appdirs')
- 
-_rawlink="https://gist.github.com/selaux/5840325/raw/b9f7da98e9146f83066a4b7a763a5cdfc42c5912/ck2launcher-gtk"
-_filename="ck2launcher-gtk"
- 
-build() {
-  cd "$srcdir"
-  msg "Receiving file ...."
- 
-  rm -f "$_filename"
-  wget "$_rawlink"
-}
+source=("https://github.com/selaux/${_reponame}/archive/${_gitrev}.tar.gz")
+sha512sums=('ded02e4dad87da6540f0de36298b7cb4fb522a70a461c4037cba88bc8ebb193a7bf2bad9c04cf6d3eb2eea5bdafdc420b599165ade559b62f00857889ea1fc98')
 
 package() {
   cd "$srcdir"
-  install -Dm755 ck2launcher-gtk ${pkgdir}/usr/bin/ck2launcher-gtk
+  install -Dm755 ${_reponame}-${_gitrev}/${_sourcefilename} ${pkgdir}/usr/bin/${_filename}
 }
